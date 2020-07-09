@@ -16,14 +16,14 @@ begin transaction;
 insert into game default values;
 
 insert into team default values;
-insert into game_team_score values ((select max(id) from game), (select max(id) from team), $TA_SCORE);
-insert into team_player values ((select max(id) from team), $TAP1);
-$(if [[ "x$TAP2" != "x" ]]; then echo "insert into team_player values ((select max(id) from team), $TAP2);"; fi)
+insert into game_team_score (game_id, team_id, team_score) values ((select max(id) from game), (select max(id) from team), $TA_SCORE);
+insert into team_player (team_id, player_id) values ((select max(id) from team), $TAP1);
+$(if [[ "x$TAP2" != "x" ]]; then echo "insert into team_player (team_id, player_id) values ((select max(id) from team), $TAP2);"; fi)
 
 insert into team default values;
-insert into game_team_score values ((select max(id) from game), (select max(id) from team), $TB_SCORE);
-insert into team_player values ((select max(id) from team), $TBP1);
-$(if [[ "x$TBP2" != "x" ]]; then echo "insert into team_player values ((select max(id) from team), $TBP2);"; fi)
+insert into game_team_score (game_id, team_id, team_score) values ((select max(id) from game), (select max(id) from team), $TB_SCORE);
+insert into team_player (team_id, player_id) values ((select max(id) from team), $TBP1);
+$(if [[ "x$TBP2" != "x" ]]; then echo "insert into team_player (team_id, player_id) values ((select max(id) from team), $TBP2);"; fi)
 
 commit;
 EOF
