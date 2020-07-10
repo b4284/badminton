@@ -49,6 +49,7 @@ EOF
 <html>
   <head>
     <meta http-equiv="refresh" content="1; url=/badminton/">
+    <link rel="stylesheet" type="text/css" href="badminton.css">
   </head>
   <body>
     <h1>OK...</h1>
@@ -84,6 +85,9 @@ else
     cat <<EOF
 <!doctype html>
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="badminton.css">
+  </head>
   <body>
     <form>
       <h1>TEAM A</h1>

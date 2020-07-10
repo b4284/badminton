@@ -33,13 +33,20 @@ function generate_ranking {
 cat <<EOF
 <!doctype html>
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="badminton.css">
+  </head>
   <body>
     <p><a href="newgame.cgi"><input type="button" value="New Game" /></a></p>
     <h1>ALL GAMES</h1>
-    <table border="1">
-    <tr><th></th><th>GAME #</th><th>P1</th><th>P2</th><th>TEAM A</th><th>P1</th><th>P2</th><th>TEAM B</th></tr>
-    $(generate_games_table)
-    </table>
+
+    <form action="delete.cgi">
+      <table border="1">
+      <tr><th></th><th>GAME #</th><th>P1</th><th>P2</th><th>TEAM A</th><th>P1</th><th>P2</th><th>TEAM B</th></tr>
+      $(generate_games_table)
+      </table>
+      <input type="submit" value="Delete game">
+    </form>
 
     <h1>RANKING</h1>
     <table border="1">
