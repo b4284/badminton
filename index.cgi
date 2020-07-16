@@ -6,8 +6,8 @@ echo -ne "Content-type: text/html\n\n"
 
 cat header.html
 
-readarray -t GAMES <<< $(sqlite3 badminton.db "select game_id, ta_p1, ta_p2, ta_score, tb_p1, tb_p2, tb_score from all_games;")
-readarray -t RANKINGS <<< $(sqlite3 badminton.db "select id, name, score from player_score_sum;")
+readarray -t GAMES <<< $(sqlite3 ${BADMINTON_ENV:-prod}.db "select game_id, ta_p1, ta_p2, ta_score, tb_p1, tb_p2, tb_score from all_games;")
+readarray -t RANKINGS <<< $(sqlite3 ${BADMINTON_ENV:-prod}.db "select id, name, score from player_score_sum;")
 
 function generate_games_table {
     for GAME in "${GAMES[@]}"; do

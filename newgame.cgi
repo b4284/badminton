@@ -11,7 +11,7 @@ if [[ "x${QUERY_STRING}" != "x" ]]; then
         local TA_SCORE="$5"
         local TB_SCORE="$6"
 
-        sqlite3 badminton.db "$(cat <<EOF
+        sqlite3 ${BADMINTON_ENV:-prod}.db "$(cat <<EOF
 begin transaction;
 insert into game default values;
 
@@ -80,7 +80,7 @@ else
 
     echo -ne "Content-type: text/html\n\n"
 
-    readarray -t PLAYERS <<< $(sqlite3 badminton.db 'select * from player;')
+    readarray -t PLAYERS <<< $(sqlite3 ${BADMINTON_ENV:-prod}.db 'select * from player;')
 
     cat <<EOF
 <!doctype html>

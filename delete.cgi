@@ -18,14 +18,14 @@ else
         cat <<EOF
 <form>
 <p>
-Are you sure you want to delete the game? ($(sqlite3 badminton.db "$(printf 'select * from all_games where game_id = %s' $GAME_ID)"))</p>
+Are you sure you want to delete the game? ($(sqlite3 ${BADMINTON_ENV:-prod}.db "$(printf 'select * from all_games where game_id = %s' $GAME_ID)"))</p>
 <p><input type="hidden" name="GAME_ID" value="$GAME_ID" /></p>
 <p><input type="submit" name="DELETE" value="YES" /></p>
 </form>
 EOF
 
     else
-        sqlite3 badminton.db "$(cat <<EOF
+        sqlite3 ${BADMINTON_ENV:-prod}.db "$(cat <<EOF
 begin transaction;
 delete from team_player where team_id in (select team_id from game_team_score where game_id = $GAME_ID);
 delete from game_team_score where game_id = $GAME_ID;

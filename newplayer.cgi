@@ -23,7 +23,7 @@ if [[ "${NEWPLAYER:-NO}" != "YES" ]]; then
 EOF
 
 else
-    sqlite3 badminton.db "$(cat <<EOF
+    sqlite3 ${BADMINTON_ENV:-prod}.db "$(cat <<EOF
 begin transaction;
 insert into player (name) values ('$NAME');
 commit;
