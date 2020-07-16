@@ -11,7 +11,7 @@ function generate_games_table {
     for GAME in "${GAMES[@]}"; do
         readarray -d \| -t GAME_DETAIL <<< "$(echo "$GAME")"
         echo "<tr>"
-        echo "<td><input type=\"radio\" name=\"DELETE_ID\" value=\"${GAME_DETAIL[0]}\" /></td>"
+        echo "<td><input type=\"radio\" name=\"GAME_ID\" value=\"${GAME_DETAIL[1]}\" /></td>"
         for i in $(seq 1 7); do
             echo "<td>${GAME_DETAIL[$i]}</td>"
         done
